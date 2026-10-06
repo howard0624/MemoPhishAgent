@@ -14,7 +14,8 @@ def prepare(source, destination, seed='memophish-v1'):
     source, destination = Path(source), Path(destination)
     # Existing results must be retained; choose a new output directory for a rerun.
     destination.mkdir(parents=True, exist_ok=False)
-    rows = list(csv.DictReader(source.open(encoding='utf-8-sig', newline='')))
+    with source.open(encoding='utf-8-sig', newline='') as handle:
+        rows = list(csv.DictReader(handle))
     by_url = defaultdict(list)
     for row in rows:
         if row['label'] not in ('benign', 'malicious'):
