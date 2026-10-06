@@ -1,0 +1,54 @@
+{
+  "status": "provisional_not_live_validated",
+  "seed": "memophish-v1",
+  "source_sha256": "af5917bf3c59056d28bc4e0566613e02256441b3c1cff27642125d64e50aa8ac",
+  "input_records": 753,
+  "unique_urls": 747,
+  "duplicate_extra_records": 6,
+  "excluded_unique_urls": 84,
+  "eligible_unique_urls": 663,
+  "excluded_reason_counts": {
+    "redacted_query": 30,
+    "conflicting_labels": 1,
+    "unresolved_shortener": 53
+  },
+  "target_fractions": {
+    "warmup": 0.6,
+    "validation": 0.2,
+    "test": 0.2
+  },
+  "grouping": "bundled PSL with private suffixes; entire registered site kept together",
+  "limitations": [
+    "No live availability or current-label verification",
+    "Cross-domain templates and redirect destinations not verified",
+    "URL deduplication is exact string matching; aliases still need review",
+    "Conservative shared-host grouping may create label imbalance",
+    "No detection results, API calls, or memory snapshot produced"
+  ],
+  "splits": {
+    "warmup": {
+      "urls": 398,
+      "site_groups": 95,
+      "historical_labels": {
+        "malicious": 306,
+        "benign": 92
+      }
+    },
+    "validation": {
+      "urls": 133,
+      "site_groups": 94,
+      "historical_labels": {
+        "malicious": 37,
+        "benign": 96
+      }
+    },
+    "test": {
+      "urls": 132,
+      "site_groups": 94,
+      "historical_labels": {
+        "malicious": 42,
+        "benign": 90
+      }
+    }
+  }
+}
