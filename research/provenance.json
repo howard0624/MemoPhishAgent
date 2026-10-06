@@ -1,0 +1,94 @@
+{
+  "repository": "https://github.com/XuanChen-xc/MemoPhishAgent",
+  "upstream_commit": "732648119f4de568cc13eab24c741645679e6958",
+  "local_import_commit": "dd9dc31",
+  "source_kind": "text snapshot obtained through GitHub connector; not a full clone",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_blob_sha": "20f786f90c966acdc89fcb1bccc24db757a70156"
+    },
+    {
+      "path": "README.md",
+      "upstream_blob_sha": "e2f4eda5f2fc039ab9ec3f8464a8fa25c648365e"
+    },
+    {
+      "path": "agent/.dockerignore",
+      "upstream_blob_sha": "f7d11e17b12b15d573d874256f99d8b2fd73a0ad"
+    },
+    {
+      "path": "agent/.env.example",
+      "upstream_blob_sha": "19b9a6f0c7061a6e6f8f3e181bcae4dd34cc9f1f"
+    },
+    {
+      "path": "agent/Dockerfile",
+      "upstream_blob_sha": "9ef8ae0e973083c9cc3d6c082624f176e3eae8ce"
+    },
+    {
+      "path": "agent/requirements.txt",
+      "upstream_blob_sha": "726eb09bad01797bde249a7a2f581943e4e74c86"
+    },
+    {
+      "path": "agent/src/__init__.py",
+      "upstream_blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "agent/src/agent_helpers.py",
+      "upstream_blob_sha": "9a4dd5d4ba3148d50b1e24fc1fb27acd9a4ef265"
+    },
+    {
+      "path": "agent/src/baseline_monolithic.py",
+      "upstream_blob_sha": "857859d9453a91a1ca92fdbc7971e1b5d6d8a74f"
+    },
+    {
+      "path": "agent/src/callbacks.py",
+      "upstream_blob_sha": "1cfa637b5b83a30b8e4705ccf187f7d8a666b244"
+    },
+    {
+      "path": "agent/src/graph.py",
+      "upstream_blob_sha": "a68194187519ddb61daee0ad5430b93ea50a92e5"
+    },
+    {
+      "path": "agent/src/memory.py",
+      "upstream_blob_sha": "3495350bef4c812786c185e1edb7962129fd2d30"
+    },
+    {
+      "path": "agent/src/prompts.py",
+      "upstream_blob_sha": "21d11c88c7abb739b2440ae8f572870b3382f28d"
+    },
+    {
+      "path": "agent/src/state.py",
+      "upstream_blob_sha": "1cdc9c4d954d387418a57acf03c935efbb5af368"
+    },
+    {
+      "path": "agent/src/tools.py",
+      "upstream_blob_sha": "a15276538e6d91c2b25e83b0105285a45926d108"
+    },
+    {
+      "path": "agent/src/utils.py",
+      "upstream_blob_sha": "32921b8f63b8b5a184877bff5bc26c3372d295de"
+    },
+    {
+      "path": "data/socphish/README.md",
+      "upstream_blob_sha": "7739fd8cc97cab5162379e32b1ccd9d05648c854"
+    },
+    {
+      "path": "data/socphish/socphish_public.csv",
+      "upstream_blob_sha": "74e9227984d9514cb59ed3686f78d7758e345420"
+    },
+    {
+      "path": "data/socphish/stats.json",
+      "upstream_blob_sha": "4a37ea6d35d919db61294f86db13deab8c93a956"
+    },
+    {
+      "path": "outputs/sample_predictions.json",
+      "upstream_blob_sha": "e8e654aeed5551d4cab8a2470aba84f03dc7f7c8"
+    }
+  ],
+  "validation": {
+    "offline_tests": 7,
+    "full_agent_integration": "not run: dependencies and API configuration unavailable",
+    "live_detection_performance": "not measured",
+    "paid_api_calls": 0
+  }
+}

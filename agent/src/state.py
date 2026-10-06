@@ -67,6 +67,7 @@ class ReactURLState(InputState):
     memory_snippet: str = ""
     memory_case: str = ""
     memory_majority: Optional[bool] = None
+    memory_audit: Dict[str, Any] = field(default_factory=dict)
     verdict: Dict[str, Any] = field(default_factory=dict)
     tool_sequence: List[str] = field(default_factory=list)
     # `messages` and its `add_messages` behavior are inherited from InputState

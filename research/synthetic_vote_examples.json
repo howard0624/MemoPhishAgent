@@ -1,0 +1,436 @@
+{
+  "warning": "Synthetic software verification ONLY; no real detection performance was measured.",
+  "examples": [
+    {
+      "example": "3:2",
+      "synthetic": true,
+      "audit": {
+        "k": 5,
+        "similarity_threshold": 0.6,
+        "retrieved_count": 5,
+        "accepted_count": 5,
+        "candidates": [
+          {
+            "rank": 1,
+            "memory_id": "fixture-0",
+            "url": "https://case-0.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 2,
+            "memory_id": "fixture-1",
+            "url": "https://case-1.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 3,
+            "memory_id": "fixture-2",
+            "url": "https://case-2.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 4,
+            "memory_id": "fixture-3",
+            "url": "https://case-3.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": false,
+            "stored_confidence": null
+          },
+          {
+            "rank": 5,
+            "memory_id": "fixture-4",
+            "url": "https://case-4.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": false,
+            "stored_confidence": null
+          }
+        ],
+        "accepted_memory_ids": [
+          "fixture-0",
+          "fixture-1",
+          "fixture-2",
+          "fixture-3",
+          "fixture-4"
+        ],
+        "vote_distribution": {
+          "malicious": 3,
+          "benign": 2
+        },
+        "vote_group": "3:2",
+        "malicious_vote_fraction": 0.6,
+        "agreement_fraction": 0.6,
+        "original_fast_malicious": true,
+        "decision_route": "fast_malicious"
+      }
+    },
+    {
+      "example": "4:1",
+      "synthetic": true,
+      "audit": {
+        "k": 5,
+        "similarity_threshold": 0.6,
+        "retrieved_count": 5,
+        "accepted_count": 5,
+        "candidates": [
+          {
+            "rank": 1,
+            "memory_id": "fixture-0",
+            "url": "https://case-0.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 2,
+            "memory_id": "fixture-1",
+            "url": "https://case-1.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 3,
+            "memory_id": "fixture-2",
+            "url": "https://case-2.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 4,
+            "memory_id": "fixture-3",
+            "url": "https://case-3.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 5,
+            "memory_id": "fixture-4",
+            "url": "https://case-4.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": false,
+            "stored_confidence": null
+          }
+        ],
+        "accepted_memory_ids": [
+          "fixture-0",
+          "fixture-1",
+          "fixture-2",
+          "fixture-3",
+          "fixture-4"
+        ],
+        "vote_distribution": {
+          "malicious": 4,
+          "benign": 1
+        },
+        "vote_group": "4:1",
+        "malicious_vote_fraction": 0.8,
+        "agreement_fraction": 0.8,
+        "original_fast_malicious": true,
+        "decision_route": "fast_malicious"
+      }
+    },
+    {
+      "example": "5:0",
+      "synthetic": true,
+      "audit": {
+        "k": 5,
+        "similarity_threshold": 0.6,
+        "retrieved_count": 5,
+        "accepted_count": 5,
+        "candidates": [
+          {
+            "rank": 1,
+            "memory_id": "fixture-0",
+            "url": "https://case-0.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 2,
+            "memory_id": "fixture-1",
+            "url": "https://case-1.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 3,
+            "memory_id": "fixture-2",
+            "url": "https://case-2.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 4,
+            "memory_id": "fixture-3",
+            "url": "https://case-3.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 5,
+            "memory_id": "fixture-4",
+            "url": "https://case-4.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          }
+        ],
+        "accepted_memory_ids": [
+          "fixture-0",
+          "fixture-1",
+          "fixture-2",
+          "fixture-3",
+          "fixture-4"
+        ],
+        "vote_distribution": {
+          "malicious": 5,
+          "benign": 0
+        },
+        "vote_group": "5:0",
+        "malicious_vote_fraction": 1.0,
+        "agreement_fraction": 1.0,
+        "original_fast_malicious": true,
+        "decision_route": "fast_malicious"
+      }
+    },
+    {
+      "example": "2:3",
+      "synthetic": true,
+      "audit": {
+        "k": 5,
+        "similarity_threshold": 0.6,
+        "retrieved_count": 5,
+        "accepted_count": 5,
+        "candidates": [
+          {
+            "rank": 1,
+            "memory_id": "fixture-0",
+            "url": "https://case-0.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 2,
+            "memory_id": "fixture-1",
+            "url": "https://case-1.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 3,
+            "memory_id": "fixture-2",
+            "url": "https://case-2.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": false,
+            "stored_confidence": null
+          },
+          {
+            "rank": 4,
+            "memory_id": "fixture-3",
+            "url": "https://case-3.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": false,
+            "stored_confidence": null
+          },
+          {
+            "rank": 5,
+            "memory_id": "fixture-4",
+            "url": "https://case-4.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": false,
+            "stored_confidence": null
+          }
+        ],
+        "accepted_memory_ids": [
+          "fixture-0",
+          "fixture-1",
+          "fixture-2",
+          "fixture-3",
+          "fixture-4"
+        ],
+        "vote_distribution": {
+          "malicious": 2,
+          "benign": 3
+        },
+        "vote_group": "2:3",
+        "malicious_vote_fraction": 0.4,
+        "agreement_fraction": 0.6,
+        "original_fast_malicious": false,
+        "decision_route": "memory_guided_llm"
+      }
+    },
+    {
+      "example": "partial",
+      "synthetic": true,
+      "audit": {
+        "k": 5,
+        "similarity_threshold": 0.6,
+        "retrieved_count": 5,
+        "accepted_count": 4,
+        "candidates": [
+          {
+            "rank": 1,
+            "memory_id": "fixture-0",
+            "url": "https://case-0.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 2,
+            "memory_id": "fixture-1",
+            "url": "https://case-1.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 3,
+            "memory_id": "fixture-2",
+            "url": "https://case-2.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 4,
+            "memory_id": "fixture-3",
+            "url": "https://case-3.example.invalid",
+            "similarity": 0.9,
+            "accepted": true,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 5,
+            "memory_id": "fixture-4",
+            "url": "https://case-4.example.invalid",
+            "similarity": 0.59,
+            "accepted": false,
+            "malicious": true,
+            "stored_confidence": null
+          }
+        ],
+        "accepted_memory_ids": [
+          "fixture-0",
+          "fixture-1",
+          "fixture-2",
+          "fixture-3"
+        ],
+        "vote_distribution": {
+          "malicious": 4,
+          "benign": 0
+        },
+        "vote_group": "4:0",
+        "malicious_vote_fraction": 1.0,
+        "agreement_fraction": 1.0,
+        "original_fast_malicious": false,
+        "decision_route": "memory_guided_llm"
+      }
+    },
+    {
+      "example": "no_match",
+      "synthetic": true,
+      "audit": {
+        "k": 5,
+        "similarity_threshold": 0.6,
+        "retrieved_count": 5,
+        "accepted_count": 0,
+        "candidates": [
+          {
+            "rank": 1,
+            "memory_id": "fixture-0",
+            "url": "https://case-0.example.invalid",
+            "similarity": 0.59,
+            "accepted": false,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 2,
+            "memory_id": "fixture-1",
+            "url": "https://case-1.example.invalid",
+            "similarity": 0.59,
+            "accepted": false,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 3,
+            "memory_id": "fixture-2",
+            "url": "https://case-2.example.invalid",
+            "similarity": 0.59,
+            "accepted": false,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 4,
+            "memory_id": "fixture-3",
+            "url": "https://case-3.example.invalid",
+            "similarity": 0.59,
+            "accepted": false,
+            "malicious": true,
+            "stored_confidence": null
+          },
+          {
+            "rank": 5,
+            "memory_id": "fixture-4",
+            "url": "https://case-4.example.invalid",
+            "similarity": 0.59,
+            "accepted": false,
+            "malicious": true,
+            "stored_confidence": null
+          }
+        ],
+        "accepted_memory_ids": [],
+        "vote_distribution": {
+          "malicious": 0,
+          "benign": 0
+        },
+        "vote_group": "0:0",
+        "malicious_vote_fraction": null,
+        "agreement_fraction": null,
+        "original_fast_malicious": false,
+        "decision_route": "no_match_llm"
+      }
+    }
+  ]
+}

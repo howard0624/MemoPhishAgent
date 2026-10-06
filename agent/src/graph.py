@@ -169,6 +169,10 @@ if __name__ == "__main__":
     )
     parser.add_argument("--input", default="test.txt")
     parser.add_argument("--output", default="data.json")
+    parser.add_argument("--memory-audit-output", help="Per-URL JSONL diagnostics; no labels are given to the agent.")
+    parser.add_argument("--memory-snapshot-in", help="JSON memory snapshot to restore before processing.")
+    parser.add_argument("--memory-snapshot-out", help="Save memory records after each write (warm-up).")
+    parser.add_argument("--freeze-memory-writes", action="store_true", help="Freeze the memory pool during evaluation.")
     parser.add_argument(
         "--use-ai-overview",
         default=True,
@@ -215,7 +219,10 @@ if __name__ == "__main__":
             model=args.model,
             callbacks=callbacks,
             use_memory=args.use_memory,
-            memory_kwargs={"k": args.k, "threshold": args.threshold},
+            memory_kwargs={"k": args.k, "threshold": args.threshold,
+                           "snapshot_in": args.memory_snapshot_in,
+                           "snapshot_out": args.memory_snapshot_out,
+                           "freeze_writes": args.freeze_memory_writes},
             args=args,
         )
     else:

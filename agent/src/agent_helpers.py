@@ -2,10 +2,12 @@ import asyncio
 import json
 import logging
 import time
+from collections import Counter
+from pathlib import Path
 from typing import Any, Literal, cast
 
 from langchain_core.callbacks import UsageMetadataCallbackHandler
-from langchain_core.messages import AIMessage, HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import BaseTool
 from langgraph.graph.state import CompiledStateGraph
@@ -96,6 +98,12 @@ class ReactNodes:
         return "store_memory" if state.use_memory else "__end__"
 
     async def _process_one_url(self, url: str, idx: int) -> dict[str, Any]:
+        started = time.perf_counter()
+        result = await self._process_one_url_inner(url, idx)
+        result["elapsed_seconds"] = time.perf_counter() - started
+        return result
+
+    async def _process_one_url_inner(self, url: str, idx: int) -> dict[str, Any]:
         async with self._sem:
             if self.args.use_ai_overview:
                 ai_overview_res = ai_overview_preprocess(url, self.llm)
@@ -132,6 +140,11 @@ class ReactNodes:
                 "url": url,
                 "final_msg": last_msg.content,
                 "memory_case": step.get("memory_case", " "),
+                "memory_audit": step.get("memory_audit", {}),
+                "completed_react_tools": dict(Counter(
+                    msg.name or "unknown"
+                    for msg in step["messages"] if isinstance(msg, ToolMessage)
+                )),
             }
 
     async def react_judge_node(self, state: URLState) -> dict[str, Any]:
@@ -143,9 +156,12 @@ class ReactNodes:
             return_exceptions=True,
         )
 
-        verdicts, jsons, failed_urls = [], [], []
+        verdicts, jsons, failed_urls, audit_rows = [], [], [], []
         for url, raw in zip(state["urls"], raw_results):
             if isinstance(raw, Exception):
+                audit_rows.append({"url": url, "status": "processing_failed",
+                                   "error_type": type(raw).__name__,
+                                   "decision_route": "unknown", "tokens_used": None})
                 if is_rate_limit_error(raw):
                     logging.warning(f"Rate limit for {url}: {raw}")
                 else:
@@ -155,8 +171,31 @@ class ReactNodes:
 
             if raw["type"] == "ai_overview":
                 jsons.append(raw["data"])
+                audit_rows.append({"url": url, "status": "ok",
+                                   "decision_route": "ai_overview_bypass",
+                                   "original_verdict": raw["data"].get("malicious"),
+                                   "elapsed_seconds": raw["elapsed_seconds"],
+                                   "tokens_used": None})
                 continue
 
+            row = {
+                **raw["memory_audit"],
+                "run_config": {
+                    "provider": getattr(self.args, "provider", None),
+                    "model": getattr(self.args, "model", None),
+                    "use_ai_overview": getattr(self.args, "use_ai_overview", None),
+                },
+                "url": url,
+                "status": "parse_failed",
+                "elapsed_seconds": raw["elapsed_seconds"],
+                "completed_react_tools": raw["completed_react_tools"],
+                "completed_react_tool_count": sum(raw["completed_react_tools"].values()),
+                "tokens_used": None,
+                "token_measurement_note": "Shared concurrent callbacks do not provide reliable per-URL usage.",
+            }
+            if not raw["memory_audit"]:
+                row["decision_route"] = "memory_disabled_llm"
+            audit_rows.append(row)
             logging.info("===" * 50)
             verdicts.append({"url": url, "reason": raw["final_msg"]})
             final_json = extract_and_fix(raw["final_msg"])
@@ -164,12 +203,20 @@ class ReactNodes:
                 for verdict in final_json[0]["verdicts"]:
                     verdict["memory_case"] = raw["memory_case"]
                     jsons.append(verdict)
+                    row.update({"status": "ok", "original_verdict": verdict["malicious"],
+                                "output_confidence": verdict.get("confidence")})
             except Exception as exc:
                 logging.info(f"Error {exc}")
                 failed_urls.append(url)
 
         with open(self.args.output, "w") as f:
             json.dump(jsons, f, indent=2)
+        audit_path = getattr(self.args, "memory_audit_output", None)
+        if audit_path:
+            target = Path(audit_path)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text("".join(json.dumps(row, ensure_ascii=False) + "\n"
+                                      for row in audit_rows), encoding="utf-8")
         if failed_urls:
             with open(f"{self.args.output.rsplit('.', 1)[0]}_failed_urls.txt", "w") as f:
                 for line in failed_urls:
